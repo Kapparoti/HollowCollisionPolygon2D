@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://ql605p851hou"]
+
+[node name="HollowCollisionPolygon2D" type="CollisionPolygon2D"]

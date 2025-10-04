@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyp1csw107mep"]
+
+[ext_resource type="Script" uid="uid://dxw051xmo3yq" path="res://example.gd" id="1_8lvy3"]
+[ext_resource type="PackedScene" uid="uid://ql605p851hou" path="res://hollow_collision_polygon2d.tscn" id="2_wcwec"]
+[ext_resource type="Script" uid="uid://cy1au64dtgyj5" path="res://hollow_collision_polygon_2d.gd" id="3_ei00m"]
+
+[node name="Example" type="Node"]
+script = ExtResource("1_8lvy3")
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Area2D" type="Area2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="HollowCollisionPolygon2D" parent="Area2D" instance=ExtResource("2_wcwec")]
+polygon = PackedVector2Array(500, -250, 500, 250, -500, 250, -500, -250)
+script = ExtResource("3_ei00m")
+metadata/_edit_lock_ = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PolygonNumberLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 0.07
+offset_bottom = 0.3199997
+text = "Polygon number: "
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="MouseInsideLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.07
+offset_bottom = 0.3199997
+text = "Mouse: "
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="VisibleCollisionShapesLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_top = 0.96500003
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.32000732
+grow_horizontal = 2
+grow_vertical = 0
+text = "If you don't see anything, turn on \"Visible Collision Shapes\" in the debug settings"
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[connection signal="input_event" from="Area2D" to="." method="_on_example_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
